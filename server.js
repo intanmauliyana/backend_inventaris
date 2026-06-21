@@ -44,6 +44,32 @@ let items = [
     penanggung_jawab: 'Admin IT'
   }
 ];
+let users = [
+  {
+    id: 1,
+    email: "kaurtu@kejaksaan.go.id",
+    password: "123",
+    role: "kaur_tu"
+  },
+  {
+    id: 2,
+    email: "operator",
+    password: "123",
+    role: "operator"
+  },
+  {
+    id: 3,
+    email: "kajari",
+    password: "123",
+    role: "kajari"
+  },
+  {
+    id: 4,
+    email: "kasubbagbin",
+    password: "123",
+    role: "kasubbagbin"
+  }
+];
 
 // ============================
 // GET ALL ITEMS
@@ -52,6 +78,9 @@ app.get('/items', (req, res) => {
   res.json(items);
 });
 
+app.get('/users', (req, res) => {
+  res.json(users);
+});
 // ============================
 // GET BY ID (lama)
 // ============================
@@ -65,9 +94,7 @@ app.get('/items/:id', (req, res) => {
   res.json(item);
 });
 
-// ============================
-// GET BY KODE (QR INSTANSI)
-// ============================
+
 app.get('/items-kode/:kode', (req, res) => {
   const kode = req.params.kode;
 
@@ -80,9 +107,7 @@ app.get('/items-kode/:kode', (req, res) => {
   res.json(item);
 });
 
-// ============================
-// TAMBAH BARANG + AUTO KODE BRG-000X
-// ============================
+
 app.post('/items', (req, res) => {
 
   const newId = items.length + 1;
@@ -107,9 +132,12 @@ app.post('/items', (req, res) => {
   });
 });
 
+app.get('/', (req, res) => {
+  res.send('Backend Inventaris Aktif ✔');
+});
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log("Server jalan di port " + PORT);
 });
